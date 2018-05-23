@@ -1,4 +1,4 @@
-package com.basement2dot0.tpoe.com.basement2dot0.tpoe.menus.screens;
+package com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens;
 
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 

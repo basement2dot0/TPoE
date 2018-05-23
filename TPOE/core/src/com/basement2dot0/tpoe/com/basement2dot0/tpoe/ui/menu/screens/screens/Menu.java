@@ -1,4 +1,4 @@
-package com.basement2dot0.tpoe.screens;
+package com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -62,7 +62,7 @@ public class Menu implements Screen
     {
         if(Gdx.input.isTouched())
         {
-            game.setScreen(new CharacterSheet(game));
+            //game.setScreen(new CharacterSheet(game));
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.basement2dot0.tpoe.com.basement2dot0.tpoe.menus.screens;
+package com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -9,7 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.basement2dot0.tpoe.MainGame;
 
-public class Register implements Screen {
+public class Register implements Screen
+{
 
     private MainGame game;
 

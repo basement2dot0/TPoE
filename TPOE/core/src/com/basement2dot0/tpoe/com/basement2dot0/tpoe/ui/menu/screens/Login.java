@@ -1,5 +1,6 @@
-package com.basement2dot0.tpoe.com.basement2dot0.tpoe.menus.screens;
+package com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens;
 
+import com.basement2dot0.tpoe.com.basement2dot0.tope.audio.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,6 +17,7 @@ public class Login implements Screen
     private Stage stage;
     private Skin skin;
     private LoginMenu loginMenu;
+    private Audio audio;
     public Login(MainGame game)
     {
         this.game = game;
@@ -31,6 +33,7 @@ public class Login implements Screen
     public void show()
     {
         Gdx.gl.glClearColor(0.311f, 0.311f, 0.311f, 0.311f);
+        audio = new Audio();
 
         loginMenu.getBtnLogin().addListener(new ClickListener()
         {
