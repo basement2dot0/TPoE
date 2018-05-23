@@ -2,8 +2,8 @@ package com.basement2dot0.tpoe;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.basement2dot0.tpoe.screens.CharacterSheet;
-import com.basement2dot0.tpoe.screens.Menu;
+import com.basement2dot0.tpoe.com.basement2dot0.tpoe.menus.screens.CharacterSheet;
+import com.basement2dot0.tpoe.com.basement2dot0.tpoe.menus.screens.Login;
 
 public class MainGame extends Game
 {
@@ -16,7 +16,7 @@ public class MainGame extends Game
 	public void create ()
 	{
 		spriteBatch = new SpriteBatch();
-		this.setScreen(new Menu(this));
+		this.setScreen(new Login(this));
 	}
 
 	@Override
