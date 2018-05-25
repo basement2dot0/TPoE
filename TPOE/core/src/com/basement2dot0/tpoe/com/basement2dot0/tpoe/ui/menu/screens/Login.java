@@ -1,5 +1,10 @@
 package com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens;
 
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.basement2dot0.tpoe.com.basement2dot0.tope.audio.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -18,13 +23,16 @@ public class Login implements Screen
     private Skin skin;
     private LoginMenu loginMenu;
     private Audio audio;
+
     public Login(MainGame game)
     {
         this.game = game;
+        skin = new Skin(Gdx.files.internal("skins/glassy-ui.json"));
+
 
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-        skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
+
         loginMenu = new LoginMenu(skin);
         stage.addActor(loginMenu);
     }
@@ -32,6 +40,7 @@ public class Login implements Screen
     @Override
     public void show()
     {
+
         Gdx.gl.glClearColor(0.311f, 0.311f, 0.311f, 0.311f);
         audio = new Audio();
 
@@ -41,7 +50,6 @@ public class Login implements Screen
             {
                 game.setScreen(new CharacterSheet(game));
                 super.clicked(event, xPosition, yPosition);
-
             }
         });
 
@@ -60,8 +68,13 @@ public class Login implements Screen
     public void render(float delta)
     {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        game.getSpriteBatch().begin();
         stage.draw();
-        handleInput();
+        stage.act();
+        game.getSpriteBatch().end();
+
+        //handleInput();
 
     }
 
@@ -92,11 +105,6 @@ public class Login implements Screen
 
     @Override
     public void dispose()
-    {
-
-    }
-
-    public void handleInput()
     {
 
     }

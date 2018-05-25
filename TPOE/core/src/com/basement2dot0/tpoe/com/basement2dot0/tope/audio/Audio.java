@@ -11,7 +11,7 @@ public class Audio
     {
         music = Gdx.audio.newMusic(Gdx.files.internal("audio/main.mp3"));
         music.setLooping(true);
-        music.setVolume(0.0f);
+        music.setVolume(1.0f);
         music.play();
     }
 

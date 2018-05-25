@@ -23,7 +23,7 @@ public class Register implements Screen
     {
         this.game = game;
 
-        skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
+        skin = new Skin(Gdx.files.internal("skins/glassy-ui.json"));
 
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
