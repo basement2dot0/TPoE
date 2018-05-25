@@ -22,7 +22,6 @@ public class Login implements Screen
     private Stage stage;
     private Skin skin;
     private LoginMenu loginMenu;
-    private Audio audio;
 
     public Login(MainGame game)
     {
@@ -42,13 +41,13 @@ public class Login implements Screen
     {
 
         Gdx.gl.glClearColor(0.311f, 0.311f, 0.311f, 0.311f);
-        audio = new Audio();
+        Audio.getInstance().playAudio("audio/main.mp3", true, 1.0f);
 
         loginMenu.getBtnLogin().addListener(new ClickListener()
         {
             public void clicked(InputEvent event, float xPosition, float yPosition)
             {
-                game.setScreen(new CharacterSheet(game));
+                game.setScreen(new CharacterCreation(game));
                 super.clicked(event, xPosition, yPosition);
             }
         });

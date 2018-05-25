@@ -1,5 +1,8 @@
 package com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 public class RegisterMenu extends Table {
@@ -17,11 +20,17 @@ public class RegisterMenu extends Table {
 
     private TextButton submit;
     private TextButton back;
+    
+    private TextureAtlas buttonAtlas;
+    private BitmapFont font;
 
     public RegisterMenu(Skin skin)
     {
         this.skin = skin;
+        buttonAtlas = new TextureAtlas(Gdx.files.internal("ui/button.pack"));
+        skin.addRegions(buttonAtlas);
         this.setFillParent(true);
+        font = new BitmapFont(Gdx.files.internal("ui/new.fnt"), false);
         initializeComponents();
         addComponents();
     }
@@ -43,9 +52,14 @@ public class RegisterMenu extends Table {
 
         emailLabel = new Label("Email", skin);
         emailField = new TextField("", skin);
-
-        submit = new TextButton("Register", skin);
-        back = new TextButton("Back", skin);
+        
+        TextButton.TextButtonStyle tbStyle = new TextButton.TextButtonStyle();
+        tbStyle.up = skin.getDrawable("buttonOff");
+        tbStyle.down = skin.getDrawable("buttonOn");
+        tbStyle.font = font;
+        
+        submit = new TextButton("Register", tbStyle);
+        back = new TextButton("Back", tbStyle);
     }
 
     public void addComponents(){
