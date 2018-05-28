@@ -1,14 +1,9 @@
 package com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens;
 
-import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.basement2dot0.tpoe.com.basement2dot0.tope.audio.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -26,42 +21,37 @@ public class Login implements Screen
     private Stage stage;
     private Skin skin;
     private LoginMenu loginMenu;
-    private Audio audio;
-    private OrthographicCamera camera;
+    private AudioManager audioManager;
+    private Music audio;
 
-    private int screenWidth;
-    private int screenHeight;
 
     public Login(MainGame game)
     {
+        audioManager = new AudioManager();
         this.game = game;
-        screenWidth = Gdx.graphics.getWidth();
-        screenHeight = Gdx.graphics.getHeight();
         skin = new Skin(Gdx.files.internal("skins/glassy-ui.json"));
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-
-        stage = new Stage(new ScreenViewport());
+        stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
         loginMenu = new LoginMenu(skin);
         stage.addActor(loginMenu);
+        audio = audioManager.getAudioManager().get("audio/main.mp3");
+        audio.setLooping(true);
+        audio.stop();
+
     }
 
     @Override
     public void show()
     {
-
+        loginMenu.getBtnAudio().setColor(Color.RED);
         Gdx.gl.glClearColor(0.311f, 0.311f, 0.311f, 0.311f);
-        audio = new Audio();
 
         loginMenu.getBtnLogin().addListener(new ClickListener()
         {
             public void clicked(InputEvent event, float xPosition, float yPosition)
             {
                 game.setScreen(new CharacterSheet(game));
-                super.clicked(event, xPosition, yPosition);
             }
         });
 
@@ -70,36 +60,48 @@ public class Login implements Screen
             public void clicked(InputEvent event, float xPosition, float yPosition)
             {
                 game.setScreen(new Register(game));
-                super.clicked(event, xPosition, yPosition);
 
             }
         });
-    }
+
+        loginMenu.getBtnAudio().addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float xPosition, float yPosition)
+            {
+                if(!audio.isPlaying())
+                {
+                    audio.play();
+                    loginMenu.getBtnAudio().setColor(Color.BLUE);
+
+                }
+                else
+                {
+                    audio.stop();
+                    loginMenu.getBtnAudio().setColor(Color.RED);
+                }
+
+            }
+        });
+
+}
 
     @Override
     public void render(float delta)
     {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.update();
-        game.getSpriteBatch().setProjectionMatrix(camera.combined);
-
         game.getSpriteBatch().begin();
         stage.draw();
-        stage.act(Gdx.graphics.getDeltaTime());
+        stage.act();
         game.getSpriteBatch().end();
 
-
-
-
-        //handleInput();
 
     }
 
     @Override
     public void resize(int width, int height)
     {
-        stage.getViewport().update(width, height);
+
     }
 
     @Override
@@ -124,7 +126,9 @@ public class Login implements Screen
     @Override
     public void dispose()
     {
-        stage.dispose();
         game.getSpriteBatch().dispose();
+        stage.dispose();
+        audio.dispose();
+        audioManager.getAudioManager().dispose();
     }
 }
