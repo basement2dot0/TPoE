@@ -1,6 +1,7 @@
 package com.basement2dot0.tpoe;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens.Login;
 
@@ -8,8 +9,8 @@ public class MainGame extends Game
 {
 	private SpriteBatch spriteBatch;
 
-	private float screenWidth = 600f;
-	private float screenHeight = 800f;
+	private float screenWidth;
+	private float screenHeight;
 	
 	@Override
 	public void create ()

@@ -32,8 +32,8 @@ public class CharacterCreationMenu extends Table
     public CharacterCreationMenu(Skin skin)
     {
         this.skin = skin;
-        buttonAtlas = new TextureAtlas(Gdx.files.internal("ui/button.pack"));
-        font = new BitmapFont(Gdx.files.internal("ui/new.fnt"), false);
+        buttonAtlas = new TextureAtlas(Gdx.files.internal("ui/buttons/button.pack"));
+        font = new BitmapFont(Gdx.files.internal("ui/fonts/new.fnt"), false);
         skin.addRegions(buttonAtlas);
         this.setFillParent(true);
         initializeLayout();
