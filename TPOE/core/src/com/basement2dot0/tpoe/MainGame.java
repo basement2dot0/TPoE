@@ -8,14 +8,15 @@ public class MainGame extends Game
 {
 	private SpriteBatch spriteBatch;
 
-	private float screenWidth = 600f;
-	private float screenHeight = 800f;
+	private float screenWidth;
+	private float screenHeight;
 	
 	@Override
 	public void create ()
 	{
 		spriteBatch = new SpriteBatch();
 		this.setScreen(new Login(this));
+
 	}
 
 	@Override
@@ -54,13 +55,5 @@ public class MainGame extends Game
 	{
 		screenHeight = height;
 	}
-
-    public Object getSprintBatch() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object setSpriteBatch() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
