@@ -51,7 +51,7 @@ public class Login implements Screen
         {
             public void clicked(InputEvent event, float xPosition, float yPosition)
             {
-                game.setScreen(new CharacterSheet(game));
+                System.out.println("Logging in");
             }
         });
 
@@ -59,8 +59,7 @@ public class Login implements Screen
         {
             public void clicked(InputEvent event, float xPosition, float yPosition)
             {
-                game.setScreen(new Register(game));
-
+                System.out.println("Create Account");
             }
         });
 
