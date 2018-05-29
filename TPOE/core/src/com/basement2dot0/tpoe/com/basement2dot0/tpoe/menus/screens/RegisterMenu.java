@@ -1,6 +1,9 @@
 package com.basement2dot0.tpoe.com.basement2dot0.tpoe.menus.screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.Json;
 
 public class RegisterMenu extends Table {
 
@@ -18,8 +21,11 @@ public class RegisterMenu extends Table {
     private TextButton submit;
     private TextButton back;
 
+    private Account accountdata;
+
     public RegisterMenu(Skin skin)
     {
+        accountdata = new Account();
         this.skin = skin;
         this.setFillParent(true);
         initializeComponents();
@@ -87,5 +93,21 @@ public class RegisterMenu extends Table {
 
     public TextField getRepeat_passwordField() {
         return repeat_passwordField;
+    }
+
+    public void registerAccount()
+    {
+        FileHandle file = Gdx.files.local("json/account.json");
+        Json json = new Json();
+
+        accountdata.setUsername(usernameField.getText());
+        accountdata.setPassword(passwordField.getText());
+        accountdata.setConfirmPassword(repeat_passwordField.getText());
+        accountdata.setEmail(emailField.getText());
+
+        String account = json.prettyPrint(accountdata);
+
+        file.writeString(account, true);
+
     }
 }

@@ -47,17 +47,15 @@ public class Register implements Screen {
 
             public void clicked(InputEvent event, float x, float y)
             {
-                System.out.println("Account Created");
-                super.clicked(event, x, y);
+                registerComponents.registerAccount();
             }
         });
 
         registerComponents.getBack().addListener(new ClickListener()
         {
 
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new Login(game));
-                super.clicked(event, x, y);
+            public void clicked(InputEvent event, float x, float y)
+            {
             }
         });
     }
