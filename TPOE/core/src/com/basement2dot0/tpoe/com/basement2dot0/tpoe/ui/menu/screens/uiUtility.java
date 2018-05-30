@@ -3,6 +3,7 @@ package com.basement2dot0.tpoe.com.basement2dot0.tpoe.ui.menu.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 
 
@@ -53,6 +54,30 @@ public class uiUtility {
         return position;
     }
     public static float heightPositioning(Button object)
+    {
+        float position = (height - object.getHeight()) / 2.0f;
+        return position;
+    }
+    
+    //ProgressBar
+    
+    public static float widthPositioning(ProgressBar object, float offset)
+    {
+        float position = (width - object.getWidth()) / 2.0f + offset;
+        return position;
+    }
+    
+    public static float widthPositioning(ProgressBar object)
+    {
+        float position = (width - object.getWidth()) / 2.0f;
+        return position;
+    }
+    public static float heightPositioning(ProgressBar object, float offset)
+    {
+        float position = (height - object.getHeight()) / 2.0f + offset;
+        return position;
+    }
+    public static float heightPositioning(ProgressBar object)
     {
         float position = (height - object.getHeight()) / 2.0f;
         return position;

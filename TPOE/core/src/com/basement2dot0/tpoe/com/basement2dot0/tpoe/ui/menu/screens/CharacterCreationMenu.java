@@ -7,8 +7,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.graphics.Color;
 
-public class CharacterCreationMenu extends Table
+public class CharacterCreationMenu extends WidgetGroup
 {
     private Skin skin;
     private Label lblTitle;
@@ -16,15 +17,16 @@ public class CharacterCreationMenu extends Table
     private Label lblSkinColor;
     private Label lblEyeColor;
     private Label lblEyeShape;
-    private Label lblHeadShape;
+    private Label lblHairStyle;
     private Label lblHairColor;
     private TextField txtName;
-    private SelectBox boxSkinColor;
-    private SelectBox boxEyeColor;
-    private SelectBox boxEyeShape;
-    private SelectBox boxHeadShape;
-    private SelectBox boxHairColor;
+    private Slider skinColor;
+    private Slider eyeColor;
+    private Slider eyeShape;
+    private Slider hairStyle;
+    private Slider hairColor;
     private TextButton btnCreate;
+    private TextButton btnBack;
     
     private TextureAtlas buttonAtlas;
     private BitmapFont font;
@@ -42,80 +44,109 @@ public class CharacterCreationMenu extends Table
 
     private void initializeLayout()
     {
-        lblTitle = new Label("Psalms of Eia", skin);
-        
-        lblName = new Label("Name",skin);
-        txtName = new TextField("", skin);
-        txtName.setMaxLength(15);
-        lblSkinColor = new Label("Skin color", skin);
-        boxSkinColor = new SelectBox(skin);
-        lblEyeColor = new Label("Eye color", skin);
-        boxEyeColor = new SelectBox(skin);
-        lblEyeShape = new Label("Eye shape", skin);
-        boxEyeShape = new SelectBox(skin);
-        lblHeadShape = new Label("Head shape", skin);
-        boxHeadShape = new SelectBox(skin);
-        lblHairColor = new Label("Hair color", skin);
-        boxHairColor = new SelectBox(skin);
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.fontColor = Color.WHITE;
+        labelStyle.font = font;
         
         TextButton.TextButtonStyle tbStyle = new TextButton.TextButtonStyle();
         tbStyle.up = skin.getDrawable("buttonOff");
         tbStyle.down = skin.getDrawable("buttonOn");
         tbStyle.font = font;
         
-        btnCreate = new TextButton("Create!", tbStyle);
+        lblTitle = new Label("Character Creation", labelStyle);
+        lblTitle.setPosition(uiUtility.widthPositioning(lblTitle),uiUtility.heightPositioning(lblTitle,275));
         
-        SelectBox.SelectBoxStyle sbStyle = new SelectBox.SelectBoxStyle();
+        lblName = new Label("Name", skin);
+        lblName.setPosition(uiUtility.widthPositioning(lblName,-250),uiUtility.heightPositioning(lblTitle,225));
+        txtName = new TextField("", skin);
+        txtName.setPosition(uiUtility.widthPositioning(txtName, -100),uiUtility.heightPositioning(txtName, 225));
+        txtName.setMaxLength(15);
+        
+        lblSkinColor = new Label("Skin Color", skin);
+        lblSkinColor.setPosition(uiUtility.widthPositioning(lblSkinColor,-250),(uiUtility.heightPositioning(lblSkinColor,175)));
+        
+        skinColor = new Slider(1,10,2,false,skin);
+        skinColor.setPosition(uiUtility.widthPositioning(skinColor,-100),uiUtility.heightPositioning(skinColor,175));
+        
+        lblEyeColor = new Label("Eye Color", skin);
+        lblEyeColor.setPosition(uiUtility.widthPositioning(lblEyeColor,-250),uiUtility.heightPositioning(lblEyeColor,125));
+        
+        eyeColor = new Slider(1,10,2,false,skin);
+        eyeColor.setPosition(uiUtility.widthPositioning(eyeColor,-100),uiUtility.heightPositioning(eyeColor,125));
+        
+        lblEyeShape = new Label("Eye Shape", skin);
+        lblEyeShape.setPosition(uiUtility.widthPositioning(lblEyeShape,-250),uiUtility.heightPositioning(lblEyeShape,75));
+        
+        eyeShape = new Slider(1,10,2,false,skin);
+        eyeShape.setPosition(uiUtility.widthPositioning(eyeShape,-100),uiUtility.heightPositioning(eyeShape,75));
+        
+        lblHairStyle = new Label("Hair Style", skin);
+        lblHairStyle.setPosition(uiUtility.widthPositioning(lblHairStyle,-250),uiUtility.heightPositioning(lblHairStyle,25));
+        
+        hairStyle = new Slider(1,10,2,false,skin);
+        hairStyle.setPosition(uiUtility.widthPositioning(hairStyle,-100),uiUtility.heightPositioning(hairStyle,25));
+        
+        lblHairColor = new Label("Hair Color", skin);
+        lblHairColor.setPosition(uiUtility.widthPositioning(lblHairColor,-250),uiUtility.heightPositioning(lblHairColor,-25));  
+        
+        hairColor = new Slider(1,10,2,false,skin);
+        hairColor.setPosition(uiUtility.widthPositioning(hairColor,-100),uiUtility.heightPositioning(hairColor,-25));
+        
+        btnCreate = new TextButton("Create!", tbStyle);
+        btnCreate.setPosition(uiUtility.widthPositioning(btnCreate, 150),uiUtility.heightPositioning(btnCreate, -200));
+        
+        btnBack = new TextButton("Back", tbStyle);
+        btnBack.setPosition(uiUtility.widthPositioning(btnBack, -150),uiUtility.heightPositioning(btnBack,-200));
     }
 
     private void addComponentsToLayout()
     {
-        this.add(lblName).pad(5);
-        this.add(txtName).pad(5).width(200);
-        this.row();
-        this.add(lblSkinColor).pad(5);
-        this.add(boxSkinColor).pad(5).width(200);
-        this.row();
-        this.add(lblEyeColor).pad(5);
-        this.add(boxEyeColor).pad(5).width(200);
-        this.row();
-        this.add(lblEyeShape).pad(5);
-        this.add(boxEyeShape).pad(5).width(200);
-        this.row();
-        this.add(lblHeadShape).pad(5);
-        this.add(boxHeadShape).pad(5).width(200);
-        this.row();
-        this.add(lblHairColor).pad(5);
-        this.add(boxHairColor).pad(5).width(200);
-        this.row();
-        this.add(btnCreate).width(150).pad(5).padTop(10).width(200);
+        this.addActor(lblTitle);
+        this.addActor(lblName);
+        this.addActor(txtName);
+        this.addActor(lblSkinColor);
+        this.addActor(skinColor);
+        this.addActor(lblEyeColor);
+        this.addActor(eyeColor);
+        this.addActor(lblEyeShape);
+        this.addActor(eyeShape);
+        this.addActor(lblHairStyle);
+        this.addActor(hairStyle);
+        this.addActor(lblHairColor);
+        this.addActor(hairColor);
+        this.addActor(btnCreate);
+        this.addActor(btnBack);
     }
     public TextField getCharacterName()
     {
         return txtName;
     }
-    public SelectBox getSkinColor()
+    public Slider getSkinColor()
     {
-        return boxSkinColor;
+        return skinColor;
     }
-    public SelectBox getEyeColor()
+    public Slider getEyeColor()
     {
-        return boxEyeColor;
+        return eyeColor;
     }
-    public SelectBox getEyeShape()
+    public Slider getEyeShape()
     {
-        return boxEyeShape;
+        return eyeShape;
     }
-    public SelectBox getHeadShape()
+    public Slider getHairStyle()
     {
-        return boxHeadShape;
+        return hairStyle;
     }
-    public SelectBox getHairColor()
+    public Slider getHairColor()
     {
-        return boxHairColor;
+        return hairColor;
     }
     public TextButton getCreate()
     {
         return btnCreate;
+    }
+    public TextButton getBack()
+    {
+        return btnBack;
     }
 }

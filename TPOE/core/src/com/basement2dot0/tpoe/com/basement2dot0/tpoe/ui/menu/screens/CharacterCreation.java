@@ -25,9 +25,6 @@ public class CharacterCreation implements Screen
     private Skin skin;
     private CharacterCreationMenu ccMenu;
     
-    
-    private final String[] skinColors = {"--Select--","Pale", "Tan", "Dark", "Fair"}; //This is temporary for testing purposes
-    
     public CharacterCreation(MainGame game)
     {
         this.game = game;
@@ -48,12 +45,18 @@ public class CharacterCreation implements Screen
             {
                 public void clicked(InputEvent event, float xPosition, float yPosition)
                 {
-                    //Code for the window that comes after Character Creation, 
-                    //does not work if any of the fields are unselected
+                    //Code for the window that comes after Character Creation
                     super.clicked(event, xPosition, yPosition);
                 }
             });
-        ccMenu.getSkinColor().setItems(skinColors);
+        ccMenu.getBack().addListener(new ClickListener()
+            {
+                public void clicked(InputEvent event, float xPosition, float yPosition)
+                {
+                    game.setScreen(new Login(game));
+                    super.clicked(event, xPosition, yPosition);
+                }
+            });
         ccMenu.getSkinColor().addListener(new ClickListener()
             {
                 public void clicked(InputEvent event, float xPosition, float yPosition)
@@ -61,7 +64,7 @@ public class CharacterCreation implements Screen
                     super.clicked(event, xPosition, yPosition);
                 }
             });
-            //Needs items
+     
             ccMenu.getEyeColor().addListener(new ClickListener()
             {
                 public void clicked(InputEvent event, float xPosition, float yPosition)
@@ -69,7 +72,7 @@ public class CharacterCreation implements Screen
                     super.clicked(event, xPosition, yPosition);
                 }
             });
-            //Needs items
+       
             ccMenu.getEyeShape().addListener(new ClickListener()
             {
                 public void clicked(InputEvent event, float xPosition, float yPosition)
@@ -77,15 +80,15 @@ public class CharacterCreation implements Screen
                     super.clicked(event, xPosition, yPosition);
                 }
             });
-            //Needs items
-            ccMenu.getHeadShape().addListener(new ClickListener()
+      
+            ccMenu.getHairStyle().addListener(new ClickListener()
             {
                 public void clicked(InputEvent event, float xPosition, float yPosition)
                 {
                     super.clicked(event, xPosition, yPosition);
                 }
             });
-            //Needs items
+          
             ccMenu.getHairColor().addListener(new ClickListener()
             {
                 public void clicked(InputEvent event, float xPosition, float yPosition)
